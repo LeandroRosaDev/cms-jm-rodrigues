@@ -90,7 +90,11 @@ const GetProdutos = () => {
                 <Link href={`/produto/${produto.id}`} className="w-72">
                   <Image
                     className="opacity-100 block w-auto h-auto transition-opacity duration-500 ease-in-out hover:opacity-30"
-                    src={produto.fotos[1].src}
+                    src={
+                      produto.fotos[1]
+                        ? produto.fotos[1].src
+                        : produto.fotos[0].src
+                    }
                     alt={`Imagem de ${produto.nome}`}
                     width={300}
                     height={250}
