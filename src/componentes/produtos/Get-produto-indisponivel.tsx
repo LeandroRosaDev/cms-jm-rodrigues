@@ -8,7 +8,7 @@ import { putProdutosAction } from "@/actions/produtos/put-produtos-action";
 import tokenAction from "@/actions/login/get-token";
 import { url } from "@/componentes/url";
 
-const GetProdutos = () => {
+const GetProdutosIndisponiveis = () => {
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -17,8 +17,7 @@ const GetProdutos = () => {
   useEffect(() => {
     const fetchProdutos = async () => {
       const token = await tokenAction();
-      const urlRequisicao =
-        url + `/wp-json/api/produto?_limit=3&disponibilidade=sim`;
+      const urlRequisicao = url + `/wp-json/api/produto?disponibilidade=nao`;
 
       try {
         const response = await fetch(urlRequisicao, {
@@ -153,4 +152,4 @@ const GetProdutos = () => {
   );
 };
 
-export default GetProdutos;
+export default GetProdutosIndisponiveis;

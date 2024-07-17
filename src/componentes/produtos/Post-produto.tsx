@@ -8,6 +8,7 @@ export default function PostProduto() {
   const [rangedevalor, setRangedevalor] = useState("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
   const [subcategoriaSelecionada, setsubCategoriaSelecionada] = useState("");
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -17,8 +18,14 @@ export default function PostProduto() {
     for (let i = 0; i < imagens.length; i++) {
       formData.append(imagens[i].name, imagens[i]);
     }
-    formData.append("nome", event.currentTarget.nome.value);
-    formData.append("produto_cod", event.currentTarget.produto_cod.value);
+
+    const nome = event.currentTarget.nome.value;
+    const produto_cod = event.currentTarget.produto_cod.value;
+    const cor = event.currentTarget.cor.value;
+    const link_1 = `//api.whatsapp.com/send?phone=5521978991540&text=Olá tudo bem? Eu estava olhando o site de vocês e gostaria de mais informações sobre o produto ${nome} ${produto_cod} ${cor}, poderia me passar mais informações sobre?`;
+
+    formData.append("nome", nome);
+    formData.append("produto_cod", produto_cod);
     formData.append("situacao", situacao);
     formData.append("rangedevalor", rangedevalor);
     formData.append("categoria", categoriaSelecionada);
@@ -32,28 +39,37 @@ export default function PostProduto() {
     );
     formData.append("altura", event.currentTarget.altura.value);
     formData.append("largura", event.currentTarget.largura.value);
-    formData.append("cor", event.currentTarget.cor.value);
-    formData.append("link_1", event.currentTarget.link_1.value);
+    formData.append("cor", cor);
+    formData.append("link_1", link_1);
     formData.append("link_2", event.currentTarget.link_2.value);
     formData.append(
       "disponibilidade",
       event.currentTarget.disponibilidade.value
     );
-
     formData.append("estrutura", event.currentTarget.estrutura.value);
 
-    await postProdutosAction(formData);
+    try {
+      await postProdutosAction(formData);
+      setSuccessMessage("Produto adicionado com sucesso");
+
+      // Limpar a mensagem após 4 segundos
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 4000);
+    } catch (error) {
+      console.error("Erro ao adicionar produto:", error);
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center flex-col m-5">
-      <div className="flex flex-wrap gap-6 items-center p-6 justify-center">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center m-5">
+      <div className="flex flex-wrap gap-4 items-center p-6 justify-center">
         <input
           type="text"
           id="nome"
           name="nome"
           placeholder="Nome do produto"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
 
         <input
@@ -61,14 +77,14 @@ export default function PostProduto() {
           id="produto_cod"
           name="produto_cod"
           placeholder="Código do Produto"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <select
           id="situacao"
           name="situacao"
           value={situacao}
           onChange={(e) => setSituacao(e.target.value)}
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         >
           <option value="">Situação do Produto</option>
           <option value="destaque">Produto em Destaque</option>
@@ -80,7 +96,7 @@ export default function PostProduto() {
           name="categoria"
           value={categoriaSelecionada}
           onChange={(e) => setCategoriaSelecionada(e.target.value)}
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         >
           <option value="">Categoria</option>
           <option value="Madeiras para telhado">Madeiras para telhado</option>
@@ -99,7 +115,7 @@ export default function PostProduto() {
           name="sub_categoria"
           value={subcategoriaSelecionada}
           onChange={(e) => setsubCategoriaSelecionada(e.target.value)}
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         >
           <option value="">Sub Categoria</option>
           {categoriaSelecionada == "Madeiras para telhado" && (
@@ -156,7 +172,7 @@ export default function PostProduto() {
           id="descricao"
           name="descricao"
           placeholder="Descrição"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
 
         <select
@@ -164,7 +180,7 @@ export default function PostProduto() {
           name="rangedevalor"
           value={rangedevalor}
           onChange={(e) => setRangedevalor(e.target.value)}
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         >
           <option value="">Selecione o Range de Valor</option>
           <option value="499">Menor de R$500,00</option>
@@ -181,47 +197,47 @@ export default function PostProduto() {
           id="preco"
           name="preco"
           placeholder="Preço"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <input
           type="text"
           id="preco_original"
           name="preco_original"
           placeholder="Preço Riscado"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <input
           type="text"
           id="preco_parcelado"
           name="preco_parcelado"
           placeholder="Preço em 10x"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <input
           type="text"
           id="altura"
           name="altura"
           placeholder="Altura"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <input
           type="text"
           id="largura"
           name="largura"
           placeholder="Largura"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <input
           type="text"
           id="estrutura"
           name="estrutura"
           placeholder="Estrutura/Características"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <select
           id="cor"
           name="cor"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         >
           <option value="">Cor</option>
           <option value="Azul">Azul</option>
@@ -244,19 +260,13 @@ export default function PostProduto() {
           <option value="Cinza/Grafite">Cinza/Grafite</option>
           <option value="Mel">Mel</option>
         </select>
+
         <input
-          type="text"
-          id="link_1"
-          name="link_1"
-          placeholder="Whatsapp Link"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
-        />
-        <input
-          type="text"
+          type="hidden"
           id="link_2"
           name="link_2"
           placeholder="Link Opcional"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
 
         <input
@@ -265,19 +275,22 @@ export default function PostProduto() {
           name="disponibilidade"
           placeholder="Disponibilidade"
           value="sim"
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
         <input
           type="file"
           name="img"
           id="img"
           multiple
-          className="border border-gray-300 w-full max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+          className="border border-gray-300 w-full max-w-xs sm:max-w-lg p-3 rounded-md bg-gray-100 transition duration-200 mb-4 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
         />
       </div>
-      <Button className="bg-red-700 text-white py-4 px-6 text-2xl rounded transition duration-100 hover:bg-red-600 focus:outline-none focus:shadow-outline">
+      <Button className="bg-yellow-500 text-white py-4 px-6 text-xl sm:text-2xl rounded transition duration-100 hover:bg-yellow-600 focus:outline-none focus:shadow-outline">
         Adicionar
       </Button>
+      {successMessage && (
+        <p className="mt-4 text-green-600">{successMessage}</p>
+      )}
     </form>
   );
 }

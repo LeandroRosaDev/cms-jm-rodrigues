@@ -78,7 +78,7 @@ const CategoriasPage = ({ params }: PageParams) => {
   };
 
   return (
-    <div>
+    <div className="px-4">
       <PesquisaProdutos onSearch={(term) => setSearchTerm(term)} />
       <section className="flex flex-wrap justify-center items-center gap-4 mx-auto my-8 max-w-screen-xl">
         {produtos.length === 0 ? (
@@ -86,7 +86,7 @@ const CategoriasPage = ({ params }: PageParams) => {
         ) : (
           produtos.map((produto) => (
             <div
-              className="flex flex-col items-center justify-center relative transform transition duration-400 hover:scale-105 max-w-[300px] max-h-[500px] bg-slate-100 p-4 rounded-2xl shadow-sm"
+              className="flex flex-col items-center justify-center relative transform transition duration-400 hover:scale-105 max-w-xs bg-slate-100 p-4 rounded-2xl shadow-sm"
               key={produto.id}
             >
               {produto.fotos && produto.fotos.length > 0 && (
@@ -106,24 +106,26 @@ const CategoriasPage = ({ params }: PageParams) => {
                   {produto?.nome} {produto?.cor}
                 </h1>
                 <h1 className="text-center text-base m-0">
-                  {produto?.produto_cod}
+                  Código: {produto?.produto_cod}
                 </h1>
                 <h1 className="text-center text-base m-0">
-                  {produto?.preco_parcelado}
+                  Preço parcelado: R${produto?.preco_parcelado},00
                 </h1>
-
                 <h1 className="text-center text-base m-0">
-                  {produto?.preco_original}
+                  Preço Original: R${produto?.preco_original},00
                 </h1>
-
-                <input
-                  type="text"
-                  value={produto?.preco}
-                  onChange={(e) =>
-                    handleUpdate(produto.id, "preco", e.target.value)
-                  }
-                  className="border mb-1 border-gray-300 w-full p-1 rounded-md bg-gray-100 transition duration-200 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
-                />
+                <h1 className="text-start text-base m-0">
+                  Preço Atual: R$
+                  <input
+                    type="text"
+                    value={produto?.preco}
+                    onChange={(e) =>
+                      handleUpdate(produto.id, "preco", e.target.value)
+                    }
+                    className="border mb-1 border-gray-300 w-12 ml-1 p-1 rounded-md bg-gray-100 transition duration-200 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+                  />
+                  ,00
+                </h1>
                 <select
                   value={produto?.situacao}
                   onChange={(e) =>
@@ -136,13 +138,7 @@ const CategoriasPage = ({ params }: PageParams) => {
                   <option value="promocao">Produto em Promoção</option>
                   <option value="queima">Produto em Queima de estoque</option>
                 </select>
-                <a
-                  target="blank"
-                  href={produto?.link_1}
-                  className="text-center block"
-                >
-                  Conferir Link
-                </a>
+
                 <div className="flex items-center space-x-2">
                   <label>
                     <input
@@ -180,7 +176,7 @@ const CategoriasPage = ({ params }: PageParams) => {
                   </label>
                 </div>
                 <button
-                  className="bg-red-700 hidden text-white py-2 px-4 mt-2 rounded"
+                  className="bg-red-700 text-white py-2 px-4 mt-2 rounded transition duration-100 hover:bg-red-600 focus:outline-none focus:shadow-outline"
                   onClick={() => handleDelete(produto.id)}
                 >
                   Deletar

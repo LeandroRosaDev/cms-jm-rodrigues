@@ -13,7 +13,7 @@ export default function Login() {
       const formData = new FormData(formRef.current);
       try {
         await loginAction(formData);
-        // window.location.reload();
+        window.location.reload();
       } catch (error) {
         console.error("Erro no login:", error);
         setErrorMessage("Erro no login. Por favor, tente novamente.");

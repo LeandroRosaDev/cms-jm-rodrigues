@@ -17,25 +17,27 @@ export default async function ServerProdutoPage({ params }: PageParams) {
   const data = await response.json();
 
   return (
-    <section className="p-6 bg-gray-100 min-h-screen">
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-        <h1 className="text-2xl font-semibold text-center text-gray-700 mb-6">
+    <section className="p-4 sm:p-6 bg-gray-100 min-h-screen">
+      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-6">
+        <h1 className="text-xl sm:text-2xl font-semibold text-center text-gray-700 mb-4 sm:mb-6">
           {data.nome}
         </h1>
         <ButtonBack className="mb-4">Voltar</ButtonBack>
         <a
           target="blank"
           href={data.link_1}
-          className="text-white bg-green-500 hover:bg-green-400 mb-4 block text-center p-3 rounded-3xl mx-auto my-0 w-52"
+          className="text-white bg-green-500 hover:bg-green-400 mb-4 block text-center p-2 sm:p-3 rounded-3xl mx-auto my-0 w-40 sm:w-52"
         >
           Confira o Link do Wpp
         </a>
         <ClientProdutoPage data={data} />
       </div>
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Imagens</h2>
+      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-4">
+          Imagens
+        </h2>
         {data.fotos.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <Image
               src={data.fotos[0].src}
               alt={data.fotos[0].titulo}
@@ -46,10 +48,10 @@ export default async function ServerProdutoPage({ params }: PageParams) {
           </div>
         )}
         <div>
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-700 mb-4">
             Todas as Imagens:
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {data.fotos.map((foto: any, index: any) => (
               <Image
                 key={index}
