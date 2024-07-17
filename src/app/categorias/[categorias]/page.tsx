@@ -113,10 +113,10 @@ const CategoriasPage = ({ params }: PageParams) => {
                   Código: {produto?.produto_cod}
                 </h1>
                 <h1 className="text-center text-base m-0">
-                  Preço parcelado: R${produto?.preco_parcelado},00
+                  Preço parcelado: R${produto?.preco_parcelado}
                 </h1>
                 <h1 className="text-center text-base m-0">
-                  Preço Original: R${produto?.preco_original},00
+                  Preço Original: R${produto?.preco_original}
                 </h1>
                 <h1 className="text-start text-base m-0">
                   Preço Atual: R$
@@ -128,7 +128,6 @@ const CategoriasPage = ({ params }: PageParams) => {
                     }
                     className="border mb-1 border-gray-300 w-12 ml-1 p-1 rounded-md bg-gray-100 transition duration-200 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
                   />
-                  ,00
                 </h1>
                 <select
                   value={produto?.situacao}

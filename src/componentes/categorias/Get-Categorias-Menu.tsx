@@ -13,7 +13,14 @@ export default function GetCategoriasMenu() {
       "Massaranduba ",
       "Cedrinho",
     ],
-    "Madeiras para Obra": ["Eucalipto", "Angelim", "Massaranduba ", "Cedrinho"],
+    "Madeiras para Obra": [
+      "Eucalipto",
+      "Angelim",
+      "Massaranduba ",
+      "Cedrinho",
+      "Pinus",
+      "Madeirite",
+    ],
     "Madeiras para Acabamento": [
       "Eucalipto",
       "Angelim",
@@ -32,7 +39,7 @@ export default function GetCategoriasMenu() {
       "Massaranduba ",
       "Cedrinho",
     ],
-    Ferragens: ["Eucalipto", "Angelim", "Massaranduba ", "Cedrinho"],
+    Ferragens: ["Vara de Ferro", "Radier", "Prego", "Coluna de Ferro"],
   };
 
   const handleCategoryClick = (category: string) => {

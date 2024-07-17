@@ -132,6 +132,8 @@ export default function PostProduto() {
               <option value="Angelim">Angelim</option>
               <option value="Massaranduba">Massaranduba</option>
               <option value="Cedrinho">Cedrinho</option>
+              <option value="Pinus">Pinus</option>
+              <option value="Madeirite">Madeirite</option>
             </>
           )}
           {categoriaSelecionada == "Madeiras para Acabamento" && (
@@ -160,10 +162,10 @@ export default function PostProduto() {
           )}
           {categoriaSelecionada == "Ferragens" && (
             <>
-              <option value="Eucalipto">Eucalipto</option>
-              <option value="Angelim">Angelim</option>
-              <option value="Massaranduba">Massaranduba</option>
-              <option value="Cedrinho">Cedrinho</option>
+              <option value="Vara de Ferro">Vara de Ferro</option>
+              <option value="Radier">Radier</option>
+              <option value="Prego">Prego</option>
+              <option value="Coluna de Ferro">Coluna de Ferro</option>
             </>
           )}
         </select>
