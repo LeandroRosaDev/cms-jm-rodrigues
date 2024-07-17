@@ -18,7 +18,7 @@ export default function Menu() {
       {isAuthenticated && (
         <nav className="bg-yellow-500 p-4">
           <div className="container mx-auto flex items-center justify-between">
-            <ul className="flex items-center gap-4 text-xl uppercase font-bold">
+            <ul className="flex items-center lg:gap-2 lg:text-lg text-sm uppercase font-bold">
               <li className="group relative">
                 <Link href="/" className="text-white hover:text-red-500 p-5">
                   Home
@@ -32,7 +32,7 @@ export default function Menu() {
                   <li>
                     <Link
                       href="/produto"
-                      className="block px-4 py-2 text-white hover:text-red-500"
+                      className="block px-1 py-2 lg:px-4 lg:py-2 text-white hover:text-red-500"
                     >
                       Visualizar Estoque
                     </Link>
@@ -40,7 +40,7 @@ export default function Menu() {
                   <li>
                     <Link
                       href="/adicionar-produtos"
-                      className="block px-4 py-2 text-white hover:text-red-500"
+                      className="block px-1 py-2 lg:px-4 lg:py-2 text-white hover:text-red-500"
                     >
                       Adicionar Produtos
                     </Link>
