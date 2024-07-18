@@ -22,7 +22,7 @@ export default function PostProduto() {
     const nome = event.currentTarget.nome.value;
     const produto_cod = event.currentTarget.produto_cod.value;
     const cor = event.currentTarget.cor.value;
-    const link_1 = `//api.whatsapp.com/send?phone=5521978991540&text=Olá tudo bem? Eu estava olhando o site de vocês e gostaria de mais informações sobre o produto ${nome} ${produto_cod} ${cor}, poderia me passar mais informações sobre?`;
+    const link_1 = `//api.whatsapp.com/send?phone=5521966453123&text=Olá tudo bem? Eu estava olhando o site de vocês e gostaria de mais informações sobre o produto ${nome} ${produto_cod} ${cor}, poderia me passar mais informações sobre?`;
 
     formData.append("nome", nome);
     formData.append("produto_cod", produto_cod);
@@ -120,15 +120,18 @@ export default function PostProduto() {
           <option value="">Sub Categoria</option>
           {categoriaSelecionada == "Madeiras para telhado" && (
             <>
-              <option value="Eucalipto">Eucalipto</option>
+              <option value="Eucalipto Rosa">Eucalipto Rosa</option>
               <option value="Angelim">Angelim</option>
               <option value="Massaranduba">Massaranduba</option>
               <option value="Cedrinho">Cedrinho</option>
+              <option value="Guajara">Guajará</option>
+              <option value="Telha">Telha</option>
+              <option value="Parafusos">Parafusos</option>
             </>
           )}
           {categoriaSelecionada == "Madeiras para Obra" && (
             <>
-              <option value="Eucalipto">Eucalipto</option>
+              <option value="Eucalipto Rosa">Eucalipto Rosa</option>
               <option value="Angelim">Angelim</option>
               <option value="Massaranduba">Massaranduba</option>
               <option value="Cedrinho">Cedrinho</option>
@@ -166,6 +169,7 @@ export default function PostProduto() {
               <option value="Radier">Radier</option>
               <option value="Prego">Prego</option>
               <option value="Coluna de Ferro">Coluna de Ferro</option>
+              <option value="Arame">Arame</option>
             </>
           )}
         </select>

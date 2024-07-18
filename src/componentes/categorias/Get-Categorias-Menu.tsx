@@ -8,10 +8,13 @@ export default function GetCategoriasMenu() {
 
   const categories: any = {
     "Madeiras para telhado": [
-      "Eucalipto",
+      "Eucalipto Rosa",
       "Angelim",
       "Massaranduba ",
       "Cedrinho",
+      "Guajará",
+      "Telha",
+      "Parafusos",
     ],
     "Madeiras para Obra": [
       "Eucalipto",
@@ -39,7 +42,7 @@ export default function GetCategoriasMenu() {
       "Massaranduba ",
       "Cedrinho",
     ],
-    Ferragens: ["Vara de Ferro", "Radier", "Prego", "Coluna de Ferro"],
+    Ferragens: ["Vara de Ferro", "Radier", "Prego", "Coluna de Ferro", "Arame"],
   };
 
   const handleCategoryClick = (category: string) => {

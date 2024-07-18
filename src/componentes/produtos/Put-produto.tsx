@@ -37,8 +37,8 @@ export default function ClientProdutoPage({ data }: ClientProdutoPageProps) {
           </label>
           <input
             type="text"
-            id="nome_long"
-            name="nome_long"
+            id="nome"
+            name="nome"
             defaultValue={data.nome}
             className="border border-gray-300 w-full p-3 rounded-md bg-gray-100 transition duration-200 focus:outline-none focus:border-yellow-500 focus:bg-white focus:shadow-outline"
           />
