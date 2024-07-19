@@ -1,5 +1,7 @@
 import GetProdutos from "@/componentes/produtos/Get-produto";
 import GetProdutosIndisponiveis from "@/componentes/produtos/Get-produto-indisponivel";
+import GetProdutoPromocao from "@/componentes/produtos/Get-produto-promocao";
+import GetProdutosQueimadeEstoque from "@/componentes/produtos/Get-produto-saldao";
 import Image from "next/image";
 
 export default function Home() {
@@ -10,11 +12,19 @@ export default function Home() {
           A Barreira vai virar baile
         </h1>
       </div>
-      <h1 className="text-2xl sm:text-4xl font-light uppercase border-b-8 border-yellow-500 text-center mx-auto my-4 max-w-fit sm:max-w-fit">
+      <h1 className="text-2xl sm:text-4xl font-light uppercase border-b-8 border-yellow-500 text-center mx-auto my-4 max-w-fit sm:max-w-fit mt-20">
         Últimos Produtos Adicionados
       </h1>
       <GetProdutos />
-      <h1 className="text-2xl sm:text-4xl font-light uppercase border-b-8 border-yellow-500 text-center mx-auto my-4 max-w-fit sm:max-w-fit">
+      <h1 className="text-2xl sm:text-4xl font-light uppercase border-b-8 border-yellow-500 text-center mx-auto my-4 max-w-fit sm:max-w-fit mt-20">
+        Produtos Promoção
+      </h1>
+      <GetProdutoPromocao />
+      <h1 className="text-2xl sm:text-4xl font-light uppercase border-b-8 border-yellow-500 text-center mx-auto my-4 max-w-fit sm:max-w-fit mt-20">
+        Produtos Queima de Estoque
+      </h1>
+      <GetProdutosQueimadeEstoque />
+      <h1 className="text-2xl sm:text-4xl font-light uppercase border-b-8 border-yellow-500 text-center mx-auto my-4 max-w-fit sm:max-w-fit mt-20">
         Produtos Indisponíveis
       </h1>
       <GetProdutosIndisponiveis />

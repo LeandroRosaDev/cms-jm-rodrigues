@@ -8,7 +8,7 @@ import { putProdutosAction } from "@/actions/produtos/put-produtos-action";
 import tokenAction from "@/actions/login/get-token";
 import { url } from "@/componentes/url";
 
-const GetProdutosIndisponiveis = () => {
+const GetProdutosQueimadeEstoque = () => {
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +17,7 @@ const GetProdutosIndisponiveis = () => {
   useEffect(() => {
     const fetchProdutos = async () => {
       const token = await tokenAction();
-      const urlRequisicao = url + `/wp-json/api/produto?disponibilidade=nao`;
+      const urlRequisicao = url + `/wp-json/api/produto?situacao=queima`;
 
       try {
         const response = await fetch(urlRequisicao, {
@@ -73,7 +73,7 @@ const GetProdutosIndisponiveis = () => {
 
   return (
     <div>
-      <section className="flex flex-wrap justify-center items-center gap-4 mx-auto my-8 max-w-screen-xl px-4 mb-20">
+      <section className="flex flex-wrap justify-center items-center gap-4 mx-auto my-8 max-w-screen-xl px-4">
         {produtos.length === 0 ? (
           <p>Nenhum produto encontrado em estoque.</p>
         ) : (
@@ -185,4 +185,4 @@ const GetProdutosIndisponiveis = () => {
   );
 };
 
-export default GetProdutosIndisponiveis;
+export default GetProdutosQueimadeEstoque;

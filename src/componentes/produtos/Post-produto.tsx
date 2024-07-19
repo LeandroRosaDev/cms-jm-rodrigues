@@ -101,9 +101,7 @@ export default function PostProduto() {
           <option value="">Categoria</option>
           <option value="Madeiras para telhado">Madeiras para telhado</option>
           <option value="Madeiras para Obra">Madeiras para Obra</option>
-          <option value="Madeiras para Acabamento">
-            Madeiras para Acabamento
-          </option>
+          <option value="Marcenaria">Marcenaria</option>
           <option value="Madeiras para Estofados">
             Madeiras para Estofados
           </option>
@@ -139,28 +137,28 @@ export default function PostProduto() {
               <option value="Madeirite">Madeirite</option>
             </>
           )}
-          {categoriaSelecionada == "Madeiras para Acabamento" && (
+          {categoriaSelecionada == "Marcenaria" && (
             <>
-              <option value="Eucalipto">Eucalipto</option>
-              <option value="Angelim">Angelim</option>
-              <option value="Massaranduba">Massaranduba</option>
-              <option value="Cedrinho">Cedrinho</option>
+              <option value="Compensado Virolinha">Compensado Virolinha</option>
             </>
           )}
           {categoriaSelecionada == "Madeiras para Estofados" && (
             <>
-              <option value="Eucalipto">Eucalipto</option>
-              <option value="Angelim">Angelim</option>
-              <option value="Massaranduba">Massaranduba</option>
-              <option value="Cedrinho">Cedrinho</option>
+              <option value="Tnt">Tnt</option>
+              <option value="Cordao vivo">Cordao vivo</option>
+              <option value="Tabua">Tábua</option>
+              <option value="Sarrafos">Sarrafos</option>
+              <option value="Percinta">Percinta</option>
+              <option value="Grampos">Grampos</option>
             </>
           )}
           {categoriaSelecionada == "Portas e acabamentos" && (
             <>
-              <option value="Eucalipto">Eucalipto</option>
-              <option value="Angelim">Angelim</option>
-              <option value="Massaranduba">Massaranduba</option>
-              <option value="Cedrinho">Cedrinho</option>
+              <option value="Portas">Portas</option>
+              <option value="Fechaduras">Fechaduras</option>
+              <option value="Portais">Portais</option>
+              <option value="Portais">Portais</option>
+              <option value="Caixonetes">Caixonetes</option>
             </>
           )}
           {categoriaSelecionada == "Ferragens" && (

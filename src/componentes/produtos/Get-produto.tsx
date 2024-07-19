@@ -54,7 +54,9 @@ const GetProdutos = () => {
   if (loading) return <p>Carregando...</p>;
   if (error)
     return (
-      <p className="text-center text-3xl mt-4">Ocorreu um erro: {error}</p>
+      <p className="text-center text-3xl mt-4 mb-20">
+        Ocorreu um erro: {error}
+      </p>
     );
 
   const handleDelete = async (produtoId: string) => {
@@ -106,6 +108,38 @@ const GetProdutos = () => {
                 <h1 className="text-center text-base m-0">
                   {produto?.nome} {produto?.cor}
                 </h1>
+                <h1 className="text-center text-base m-0">
+                  Código: {produto?.produto_cod}
+                </h1>
+                <h1 className="text-center text-base m-0">
+                  Preço parcelado: R${produto?.preco_parcelado}
+                </h1>
+                <h1 className="text-center text-base m-0">
+                  Preço Original: R${produto?.preco_original}
+                </h1>
+                <h1 className="text-start text-base m-0">
+                  Preço Atual: R$
+                  <input
+                    type="text"
+                    value={produto?.preco}
+                    onChange={(e) =>
+                      handleUpdate(produto.id, "preco", e.target.value)
+                    }
+                    className="border mb-1 border-gray-300 w-12 ml-1 p-1 rounded-md bg-gray-100 transition duration-200 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+                  />
+                </h1>
+                <select
+                  value={produto?.situacao}
+                  onChange={(e) =>
+                    handleUpdate(produto.id, "situacao", e.target.value)
+                  }
+                  className="border border-gray-300 w-full p-1 rounded-md bg-gray-100 transition duration-200 focus:outline-none focus:border-red-500 focus:bg-white focus:shadow-outline"
+                >
+                  <option value="normal">Selecione</option>
+                  <option value="destaque">Produto em Destaque</option>
+                  <option value="promocao">Produto em Promoção</option>
+                  <option value="queima">Produto em Queima de estoque</option>
+                </select>
                 <div className="flex items-center space-x-2">
                   <label>
                     <input
@@ -143,7 +177,7 @@ const GetProdutos = () => {
                   </label>
                 </div>
                 <button
-                  className="bg-red-700 hidden text-white py-2 px-4 mt-2 rounded"
+                  className="bg-red-700 text-white py-2 px-4 mt-2 rounded"
                   onClick={() => handleDelete(produto.id)}
                 >
                   Deletar
